@@ -1,0 +1,35 @@
+# /compose.yml
+version: "3.9"
+
+services:
+  # これは例なので必要に応じてコメントアウト外したり、追加してください。
+  #
+  # db:
+  #   image: supabase/postgres:15.1.0.33
+  #   restart: "no"
+  #   ports:
+  #     - 54322:5432
+  #   healthcheck:
+  #     test: pg_isready -U postgres -h localhost
+  #     interval: 2s
+  #     timeout: 2s
+  #     retries: 10
+  #   environment:
+  #     POSTGRES_HOST: /var/run/postgresql
+  #     POSTGRES_PASSWORD: ${DB_PASS}
+  #   volumes:
+  #     - ./db/migrations:/docker-entrypoint-initdb.d/migrations
+  app:
+    # 必要あればコメントアウト
+    # depends_on:
+    #  - db
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: run # to specify the multi-stage build target
+    ports:
+      - 8080:8080
+
+secrets:
+  host_ssh_key:
+    file: ~/.ssh/id_rsa

@@ -1,0 +1,43 @@
+// .devcontainer/devcontainer.json
+{
+  "name": "sora-ml",
+  "dockerComposeFile": [
+    "../compose.yml",
+    "compose.yml"
+  ],
+  "service": "app",
+  "workspaceFolder": "/workspace",
+  "userEnvProbe": "loginInteractiveShell",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        //isort
+        "editor.codeActionsOnSave": {
+          "source.organizeImports": true
+        },
+        //black
+        "editor.formatOnSave": true,
+        "python.formatting.provider": "black",
+        //flake8
+        "python.linting.lintOnSave": true,
+        "python.linting.enabled": true,
+        "python.linting.pylintEnabled": false,
+        "python.linting.flake8Enabled": true,
+        //autoDocstring
+        "autoDocstring.docstringFormat": "google"
+      },
+      "extensions": [
+		"bungcip.better-toml",
+		"esbenp.prettier-vscode",
+		"ms-python.python",
+		"ms-python.vscode-pylance",
+		"njpwerner.autodocstring",
+		"mosapride.zenkaku",
+		"streetsidesoftware.code-spell-checker",
+		"Shinotatwu-DS.file-tree-generator",
+		"GrapeCity.gc-excelviewer"
+	]
+    }
+  },
+  "postCreateCommand": "poetry install"
+}

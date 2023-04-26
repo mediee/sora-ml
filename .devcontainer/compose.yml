@@ -1,0 +1,12 @@
+# .devcontainer/compose.yml
+version: "3.9"
+services:
+  app:
+    container_name: sora-ml-dev
+    build:
+      args:
+        - PYTHON_BASE_IMAGE=mcr.microsoft.com/vscode/devcontainers/python
+      target: ${TARGET_STAGE:-dev} # override to use dev stage
+    command: sleep infinity
+    volumes:
+      - .:/workspace:cached
